@@ -10,6 +10,7 @@
 	--modal-overlay-color: #2e2f42;
 	--hero-background-color: #2e2f42;
 	--white-color: #ffffff;
+	--modal-background: #fcfcfc;
 }
 
 /* Утилиты */
@@ -129,6 +130,7 @@ img {
 
 .page-nav-link {
 	display: block;
+	position: relative;
 	padding-top: 24px;
 	padding-bottom: 24px;
 
@@ -138,6 +140,23 @@ img {
 	line-height: 1.5;
 	text-decoration: none;
 	letter-spacing: 0.02em;
+
+	transition-property: color;
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-nav-link.current::after {
+	display: block;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 4px;
+	left: 0px;
+	bottom: 0px;
+
+	background: var(--pressed-state);
+	border-radius: 2px;
 }
 
 .page-nav-link.current {
@@ -158,11 +177,16 @@ img {
 
 .address-link {
 	color: var(--text-color);
+
 	font-style: normal;
 	font-weight: 400;
 	line-height: 1.5;
 	text-decoration: none;
 	letter-spacing: 0.02em;
+
+	transition-property: color;
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .page-nav-link:hover,
@@ -215,6 +239,7 @@ img {
 
 	color: var(--white-color);
 	background-color: var(--brand-color);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
 	font-family: inherit;
 	font-weight: 500;
@@ -222,11 +247,16 @@ img {
 	line-height: 1.5;
 	letter-spacing: 0.04em;
 	cursor: pointer;
+
+	transition-property: color, background-color, box-shadow;
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button:hover,
 .button:focus {
 	color: var(--white-color);
 	background-color: var(--pressed-state);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
 .filter-button {
@@ -246,6 +276,10 @@ img {
 	text-align: center;
 	letter-spacing: 0.04em;
 	cursor: pointer;
+
+	transition-property: color, background-color, box-shadow, border;
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-button:hover,
@@ -381,6 +415,10 @@ img {
 
 	height: 40px;
 	width: 40px;
+
+	transition-property: background-color;
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link:hover,
@@ -429,6 +467,10 @@ img {
 
 	border: 1px solid currentColor;
 	border-radius: 4px;
+
+	transition-property: color;
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-link:hover,
@@ -457,13 +499,45 @@ img {
 	margin-bottom: 48px;
 }
 
+.portfolio-images {
+	position: relative;
+	overflow: hidden;
+}
+
+.portfolio-overlay {
+	position: absolute;
+
+	top: 0px;
+	left: 0px;
+
+	width: 360px;
+	height: 300px;
+
+	padding: 40px 32px;
+
+	background-color: var(--brand-color);
+
+	transform: translateY(300px);
+	transition-property: transform;
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .portfolio-link {
 	text-decoration: none;
+	transition-property: box-shadow;
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-link:hover,
 .portfolio-link:focus {
 	box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.portfolio-photo:hover .portfolio-overlay,
+.portfolio-photo:focus .portfolio-overlay {
+	transform: translateY(0px);
 }
 
 .portfolio-photo:nth-child(3n) {
@@ -478,16 +552,23 @@ img {
 	border: 1px solid var(--accent-color);
 	border-width: 0px 1px 1px;
 
+	background-color: var(--white-color);
+
 	padding-left: 16px;
 	padding-top: 32px;
 	padding-bottom: 32px;
 }
 
-.portfolio-img {
-}
-
 .portfolio-link {
 	display: block;
+}
+
+.paragraph-portfolio {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.5;
+
+	color: var(--light-color);
 }
 
 /* Footer */
@@ -567,9 +648,66 @@ img {
 	height: 40px;
 	border-radius: 50%;
 	background-color: rgba(255, 255, 255, 0.1);
+
+	transition-property: background-color;
+	transition-duration: 250ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social-link:hover,
 .footer-social-link:focus {
 	background-color: var(--success-color);
+}
+
+/* Modal */
+
+.backdrop {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+
+	opacity: 100;
+
+	width: 100%;
+	height: 100%;
+
+	background-color: rgba(46, 47, 66, 0.4);
+}
+
+.backdrop.is-hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	padding: 24px 24px;
+
+	width: 408px;
+	height: 576px;
+
+	background-color: var(--modal-background);
+}
+
+.cross-button {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	justify-content: center;
+	align-items: center;
+
+	position: absolute;
+
+	top: 24px;
+	right: 24px;
+
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	cursor: pointer;
 }

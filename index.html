@@ -25,7 +25,10 @@
 					<a href="./index.html" target="_parent" class="logo-primary">Web<span class="logo-secondary">Studio</span></a>
 					<ul class="page-nav list">
 						<li class="item">
-							<a href="./index.html" target="_parent" class="page-nav-link current">Studio</a>
+							<a href="./index.html" target="_parent" class="page-nav-link current"
+								>Studio
+								<div class="bottom-line"></div>
+							</a>
 						</li>
 						<li class="item">
 							<a href="./portfolio.html" target="_parent" class="page-nav-link">Portfolio</a>
@@ -51,7 +54,7 @@
 			<section class="hero overlay">
 				<div class="container">
 					<h1 class="hero-title">Effective Solutions for Your Business</h1>
-					<button type="button" class="button">Order Service</button>
+					<button type="button" class="button" data-modal-open>Order Service</button>
 				</div>
 			</section>
 			<section class="section">
@@ -330,5 +333,15 @@
 				</div>
 			</div>
 		</footer>
+		<div class="backdrop is-hidden" data-modal>
+			<div class="modal">
+				<button class="cross-button" data-modal-close>
+					<svg width="24px" height="24px">
+						<use href="./images/symbol-defs.svg#icon-closecross"></use>
+					</svg>
+				</button>
+			</div>
+		</div>
+		<script src="./js/modal.js"></script>
 	</body>
 </html>
